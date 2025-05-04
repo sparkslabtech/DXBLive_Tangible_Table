@@ -103,7 +103,12 @@ public class TableTopicHandler : MonoBehaviour
         videoCanvasGroup.alpha = 0f;
         videoCanvasGroup.DOFade(1f, fadeDuration);
     }
+    internal void StopTopic()
+    {
+        OnAllPucksRemoved();
 
+        //throw new NotImplementedException();
+    }
     internal void PlayTopic(int currentSelected, int p_language)
     {
         Debug.Log($"Language: {p_language}");
@@ -199,11 +204,6 @@ public class TableTopicHandler : MonoBehaviour
         GUI.TextArea(new Rect(500, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
     }
 
-    internal void StopTopic()
-    {
-        OnAllPucksRemoved();
 
-        //throw new NotImplementedException();
-    }
 #endif
 }

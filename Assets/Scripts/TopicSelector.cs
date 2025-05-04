@@ -1,3 +1,4 @@
+using EyeFactiveMarkerManager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,10 +18,17 @@ public class TopicSelector : MonoBehaviour
     private void OnRotationSelected(int p_indexSelected)
     {
         Debug.Log($"Rotation Selected: {p_indexSelected}");
+        //if (interactablePuck.GetPuckID != MarkerManager.Instance.GetCurrentPuckID())
+        //{
+        //    Debug.Log($"{interactablePuck.GetPuckID}, {MarkerManager.Instance.GetCurrentPuckID()}");
+        //    return;
+        //}
+            
         switch (p_indexSelected)
         {
             case 0:
                 //UIVideoHandler.Instance.PlayTopic(p_indexSelected);
+               
                 UIVideoHandler.Instance.ChangeTopicLanguage(p_indexSelected);
                 //PLAY ENGLISH
                 break;

@@ -95,6 +95,7 @@ namespace EyeFactiveMarkerManager
             }
             return false;
         }
+        public int GetCurrentPuckID() => currentPuckId;
         public string GetCurrentMarker() => currentMarker;
         public string GetCurrentPosition() => currentPosition;
         public string GetCurrentRotation() => currentRotation;
