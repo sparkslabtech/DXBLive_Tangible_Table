@@ -14,8 +14,8 @@ public class DXBLiveTopicHandler : MonoBehaviour
     public MarkerManager markerManager;
     public RenderTexture rt;
     public VideoPlayer topicPlayer;
-    [Space]
-    public VideoPlayer BGPlayer;
+    //[Space]
+    //public VideoPlayer BGPlayer;
     [Space]
     [Header("Fade Settings")]
     public CanvasGroup videoCanvasGroup;
@@ -39,7 +39,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
         EngvideoPaths = VideoPathLoader.GetInstance().GetEngPaths();
         ArbvideoPaths = VideoPathLoader.GetInstance().GetArbPaths();
 
-        BGPlayer.gameObject.SetActive(true);
+        //BGPlayer.gameObject.SetActive(true);
 
         topicPlayer.loopPointReached += TopicPlayer_loopPointReached;
         markerManager.OnNoPucksDetected += OnAllPucksRemoved;
@@ -68,7 +68,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
             rt.Release();
             topicPlayer.Stop();
             topicPlayer.gameObject.SetActive(false);
-            BGPlayer.gameObject.SetActive(false);
+            //BGPlayer.gameObject.SetActive(false);
             currentIndexPlaying = -1;
         }
     }
@@ -78,7 +78,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
         rt.Release();
         topicPlayer.Stop();
         //player.gameObject.SetActive(false);
-        BGPlayer.gameObject.SetActive(true);
+        //BGPlayer.gameObject.SetActive(true);
         //Logo.SetActive(true);
         //MarkerPlacement.SetActive(true);
         //throw new NotImplementedException();
@@ -112,7 +112,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
 
         rt.Release();
 
-        BGPlayer.gameObject.SetActive(false);
+        //BGPlayer.gameObject.SetActive(false);
         topicPlayer.gameObject.SetActive(true);
         //Logo.SetActive(false);
         //MarkerPlacement.SetActive(false);
@@ -155,7 +155,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
 
                     rt.Release();
 
-                    BGPlayer.gameObject.SetActive(false);
+                    //BGPlayer.gameObject.SetActive(false);
                     topicPlayer.gameObject.SetActive(true);
                     //Logo.SetActive(false);
                     //MarkerPlacement.SetActive(false);
@@ -192,7 +192,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
 
                 rt.Release();
 
-                BGPlayer.gameObject.SetActive(false);
+                //BGPlayer.gameObject.SetActive(false);
                 topicPlayer.gameObject.SetActive(true);
                 //Logo.SetActive(false);
                 //MarkerPlacement.SetActive(false);

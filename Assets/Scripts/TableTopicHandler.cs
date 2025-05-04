@@ -1,11 +1,6 @@
 ﻿using DG.Tweening;
-using DG.Tweening.Plugins;
 using EyeFactiveMarkerManager;
-using JetBrains.Annotations;
-using System;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class TableTopicHandler : MonoBehaviour
@@ -13,8 +8,8 @@ public class TableTopicHandler : MonoBehaviour
     public MarkerManager markerManager;
     public RenderTexture rt;
     public VideoPlayer player;
-    [Space]
-    public VideoPlayer TableBG;
+    //[Space]
+    //public VideoPlayer TableBG;
     [Space]
     [Header("Table UI")]
     public GameObject Logo;
@@ -36,7 +31,7 @@ public class TableTopicHandler : MonoBehaviour
 
         EngvideoPaths = TableTopicVideoPath.GetInstance().GetEngPaths();
         ArbvideoPaths = TableTopicVideoPath.GetInstance().GetArbPaths();
-        TableBG.gameObject.SetActive(true);
+        //TableBG.gameObject.SetActive(true);
 
         markerManager.OnNoPucksDetected += OnAllPucksRemoved;
     }
@@ -48,7 +43,7 @@ public class TableTopicHandler : MonoBehaviour
             rt.Release();
             player.Stop();
             player.gameObject.SetActive(false);
-            TableBG.gameObject.SetActive(false);
+            //TableBG.gameObject.SetActive(false);
             currentIndexPlaying = -1;
         }
     }
@@ -58,7 +53,7 @@ public class TableTopicHandler : MonoBehaviour
         rt.Release();
         player.Stop();
         //player.gameObject.SetActive(false);
-        TableBG.gameObject.SetActive(true);
+        //TableBG.gameObject.SetActive(true);
         Logo.SetActive(true);
         MarkerPlacement.SetActive(true);
         //throw new NotImplementedException();
@@ -73,10 +68,6 @@ public class TableTopicHandler : MonoBehaviour
         Debug.Log($"No  Puck Detected");
     }
 
-    void Update()
-    {
-
-    }
 
     public void PlayTopic(int p_index)
     {
@@ -92,7 +83,7 @@ public class TableTopicHandler : MonoBehaviour
 
         rt.Release();
 
-        TableBG.gameObject.SetActive(false);
+        //TableBG.gameObject.SetActive(false);
         player.gameObject.SetActive(true);
         Logo.SetActive(false);
         MarkerPlacement.SetActive(false);
@@ -134,7 +125,7 @@ public class TableTopicHandler : MonoBehaviour
 
                     rt.Release();
 
-                    TableBG.gameObject.SetActive(false);
+                    //TableBG.gameObject.SetActive(false);
                     player.gameObject.SetActive(true);
                     Logo.SetActive(false);
                     MarkerPlacement.SetActive(false);
@@ -170,7 +161,7 @@ public class TableTopicHandler : MonoBehaviour
 
                 rt.Release();
 
-                TableBG.gameObject.SetActive(false);
+                //TableBG.gameObject.SetActive(false);
                 player.gameObject.SetActive(true);
                 Logo.SetActive(false);
                 MarkerPlacement.SetActive(false);

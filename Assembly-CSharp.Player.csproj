@@ -126,6 +126,7 @@
     <Compile Include="Assets\Scripts\BaseScripts\Animations Scripted\FadeInMask.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Face Gen\Face.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Debug\GUILogs.cs" />
+    <Compile Include="Assets\PuckImageChnager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Streaming\SlideshowManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Movement Input\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\KeyboardEnabler.cs" />
@@ -178,7 +179,6 @@
     <Compile Include="Assets\Scripts\BaseScripts\Tools\DescriptionAttribute.cs" />
     <Compile Include="Assets\Scripts\VideoSwitch.cs" />
     <Compile Include="Assets\Scripts\TopicSelector.cs" />
-    <Compile Include="Assets\PuckImageChnager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\StreamingAssets\config.txt" />

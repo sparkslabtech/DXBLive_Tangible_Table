@@ -588,7 +588,6 @@ MonoBehaviour:
   markerManager: {fileID: 1330063715}
   rt: {fileID: 8400000, guid: 478d3d9bbb7d58849a3731c227498238, type: 2}
   topicPlayer: {fileID: 100956149}
-  BGPlayer: {fileID: 1755019258}
   videoCanvasGroup: {fileID: 100956152}
   fadeDuration: 1
   EngvideoPaths: []
@@ -665,7 +664,6 @@ MonoBehaviour:
   markerManager: {fileID: 1330063715}
   rt: {fileID: 8400000, guid: 8abce6fe2c8124246883b7d27a74ddc5, type: 2}
   player: {fileID: 1564956632}
-  TableBG: {fileID: 1336027756}
   Logo: {fileID: 334457704}
   MarkerPlacement: {fileID: 826218413}
   videoCanvasGroup: {fileID: 1564956635}
@@ -1395,7 +1393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1336027755
 RectTransform:
   m_ObjectHideFlags: 0
