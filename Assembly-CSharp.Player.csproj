@@ -160,6 +160,7 @@
     <Compile Include="Assets\Scripts\BaseScripts\UDP\UDPReceivedManager.cs" />
     <Compile Include="Assets\Scripts\MarkerTriggerDXBLive.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Network\OSC\OSC.cs" />
+    <Compile Include="Assets\PuckBoundaryLifetimes.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Input\TouchDetector.cs" />
     <Compile Include="Assets\Scripts\Tool\AreaPointCalculator.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\NetworkServiceManager.cs" />
@@ -179,7 +180,6 @@
     <Compile Include="Assets\Scripts\BaseScripts\Tools\DescriptionAttribute.cs" />
     <Compile Include="Assets\Scripts\VideoSwitch.cs" />
     <Compile Include="Assets\Scripts\TopicSelector.cs" />
-    <Compile Include="Assets\PuckBoundaryLifetimes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\StreamingAssets\config.txt" />

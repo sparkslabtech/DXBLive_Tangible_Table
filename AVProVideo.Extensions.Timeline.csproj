@@ -683,13 +683,13 @@
       <Project>{C4D0D5E4-8FE7-1DBE-B267-E14B7AF2C772}</Project>
       <Name>AVProVideo.Runtime</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{4CAFAF81-1F55-03F8-6E68-7829E11AAD96}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{1525D4E7-9513-7CA9-046F-E82999537AB8}</Project>
       <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{4CAFAF81-1F55-03F8-6E68-7829E11AAD96}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
