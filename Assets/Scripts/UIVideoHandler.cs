@@ -23,6 +23,9 @@ public class UIVideoHandler : MonoBehaviour
 
     public void PlayTopic(int p_index)
     {
+        //topicHandler.PlayTopic(p_index, 0); //:LED
+        //TableTopicHandler.PlayTopic(p_index, 0); //Table
+        //
         topicHandler.PlayTopic(p_index); //:LED
         TableTopicHandler.PlayTopic(p_index); //Table
         currentSelected = p_index;

@@ -13,7 +13,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
 {
     public MarkerManager markerManager;
     public RenderTexture rt;
-    public VideoPlayer topicPlayer;
+    [SerializeField] VideoPlayer topicPlayer;
     //[Space]
     //public VideoPlayer BGPlayer;
     [Space]
@@ -63,19 +63,20 @@ public class DXBLiveTopicHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rt.Release();
-            topicPlayer.Stop();
-            topicPlayer.gameObject.SetActive(false);
-            //BGPlayer.gameObject.SetActive(false);
-            currentIndexPlaying = -1;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    rt.Release();
+        //    topicPlayer.Stop();
+        //    topicPlayer.gameObject.SetActive(false);
+        //    //BGPlayer.gameObject.SetActive(false);
+        //    currentIndexPlaying = -1;
+        //}
     }
 
     private void OnAllPucksRemoved()
     {
         rt.Release();
+        Debug.Log("All Puck Removed Called");
         topicPlayer.Stop();
         //player.gameObject.SetActive(false);
         //BGPlayer.gameObject.SetActive(true);
@@ -86,10 +87,10 @@ public class DXBLiveTopicHandler : MonoBehaviour
         currentPathPlaying = "";
 
 
-        videoCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() =>
-        {
-            videoCanvasGroup.gameObject.SetActive(false);
-        });
+        //videoCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() =>
+        //{
+        //    videoCanvasGroup.gameObject.SetActive(false);
+        //});
 
         Debug.Log($"No  Puck Detected");
     }
@@ -144,17 +145,20 @@ public class DXBLiveTopicHandler : MonoBehaviour
                     //{
                     //    return;
                     //}
-                    if (currentPathPlaying.Contains("Eng"))
-                    {
-                        Debug.LogWarning($"Already Playing English");
-                        return;
-                    }
+                
                     if (EngvideoPaths.Length <= 0)
                     {
                         EngvideoPaths = VideoPathLoader.GetInstance().GetEngPaths();
                     }
+                    if (currentPathPlaying.Contains("Eng"))
+                    {
+                        Debug.LogWarning($"Already Playing English");
+                        Debug.LogError("Stopped Video Player");
 
+                        return;
+                    }
                     rt.Release();
+                    Debug.LogError("VideoPlayer Entered eng screen");
 
                     //BGPlayer.gameObject.SetActive(false);
                     topicPlayer.gameObject.SetActive(true);
@@ -165,6 +169,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
                     currentIndexPlaying = currentSelected;
                     currentPathPlaying = EngvideoPaths[currentSelected];
 
+                    
                     topicPlayer.Stop();
                     topicPlayer.url = currentPathPlaying;
                     topicPlayer.Play();
@@ -180,6 +185,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
                 if (currentPathPlaying.Contains("Arb"))
                 {
                     Debug.LogWarning($"Already Playing Arabic");
+                        Debug.LogError("Stopped Video Player");
                     return;
                 }
                 //if (currentIndexPlaying == currentSelected)
@@ -191,6 +197,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
                     ArbvideoPaths = TableTopicVideoPath.GetInstance().GetArbPaths();
                 }
 
+                    Debug.LogError("VideoPlayer Entered ar scren");
                 rt.Release();
 
                 //BGPlayer.gameObject.SetActive(false);
@@ -226,114 +233,11 @@ public class DXBLiveTopicHandler : MonoBehaviour
         Debug.Log($"Now Screen Playing: topic{currentSelected} language: {p_language}");
 
     }
+#if UNITY_EDITOR
 
     private void OnGUI()
     {
         GUI.TextArea(new Rect(0, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
     }
+#endif
 }
-
-
-
-/*
-{
-    public MarkerManager markerManager;
-    public RenderTexture rt;
-    public VideoPlayer player;
-    [Space]
-    //public VideoPlayer TableBG;
-    [Space]
-    [Header("Fade Settings")]
-    public CanvasGroup videoCanvasGroup;
-    public float fadeDuration = 1f;
-    [Space]
-    public string[] videoPaths;
-    public string currentPathPlaying;
-    public int currentIndexPlaying = 0;
-
-    void Start()
-    {
-        currentIndexPlaying = -1;
-        rt.Release();
-
-        videoPaths = VideoPathLoader.GetInstance().GetEngPaths();
-        //TableBG.gameObject.SetActive(false);
-
-        markerManager.OnNoPucksDetected += OnAllPucksRemoved;
-    }
-
-    private void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rt.Release();
-            player.Stop();
-            player.gameObject.SetActive(false);
-            //TableBG.gameObject.SetActive(false);
-            currentIndexPlaying = -1;
-        }
-    }
-
-    private void OnAllPucksRemoved()
-    {
-        if (player.isPlaying && player.gameObject.activeInHierarchy)
-        {
-            rt.Release();
-            player.Stop();
-            //player.gameObject.SetActive(false);
-            //TableBG.gameObject.SetActive(false);
-            //throw new NotImplementedException();
-            videoCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() =>
-            {
-                videoCanvasGroup.gameObject.SetActive(false);
-            });
-            currentIndexPlaying = -1;
-        }
-        Debug.Log($"No  Puck Detected");
-    }
-
-    void Update()
-    {
-
-    }
-
-    public void PlayTopic(int p_index)
-    {
-        if (currentIndexPlaying == p_index)
-        {
-            return;
-        }
-        if (videoPaths.Length <= 0)
-        {
-            videoPaths = VideoPathLoader.GetInstance().GetEngPaths();
-        }
-
-        rt.Release();
-        //TableBG.gameObject.SetActive(true);
-        player.gameObject.SetActive(true);
-        Debug.Log($"Now Playing: {p_index}");
-
-        currentIndexPlaying = p_index;
-        currentPathPlaying = videoPaths[p_index];              
-        //Debug.Log($"Now Playing: {currentIndexPlaying}");
-        Debug.Log($"Now Playing: {currentPathPlaying}");
-        player.Stop();
-        player.url = currentPathPlaying;
-        player.Play();
-
-        //videoCanvasGroup.gameObject.SetActive(true);
-        videoCanvasGroup.alpha = 0f;
-        videoCanvasGroup.DOFade(1f, fadeDuration);
-    }
-
-    //public void SwitchTopicAfterIntro()
-    //{
-    //    currentPathPlaying = videoPaths[currentIndexPlaying + 1];
-    //    player.Stop();
-    //    player.url = currentPathPlaying;
-    //    player.Play();
-    //}
-
-    
-}
-*/

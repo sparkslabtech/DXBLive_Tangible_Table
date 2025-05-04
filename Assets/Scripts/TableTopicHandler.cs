@@ -38,19 +38,20 @@ public class TableTopicHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rt.Release();
-            player.Stop();
-            player.gameObject.SetActive(false);
-            //TableBG.gameObject.SetActive(false);
-            currentIndexPlaying = -1;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    rt.Release();
+        //    player.Stop();
+        //    player.gameObject.SetActive(false);
+        //    //TableBG.gameObject.SetActive(false);
+        //    currentIndexPlaying = -1;
+        //}
     }
 
     private void OnAllPucksRemoved()
     {
         rt.Release();
+        Debug.Log("All Puck Removed Called");
         player.Stop();
         //player.gameObject.SetActive(false);
         //TableBG.gameObject.SetActive(true);
@@ -60,10 +61,10 @@ public class TableTopicHandler : MonoBehaviour
         currentIndexPlaying = -1;
 
 
-        videoCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() =>
-        {
-            videoCanvasGroup.gameObject.SetActive(false);
-        });
+        //videoCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() =>
+        //{
+        //    videoCanvasGroup.gameObject.SetActive(false);
+        //});
 
         Debug.Log($"No  Puck Detected");
     }
@@ -116,6 +117,7 @@ public class TableTopicHandler : MonoBehaviour
                     if (currentPathPlaying.Contains("Eng"))
                     {
                         Debug.LogWarning($"Already Playing English");
+                        Debug.LogError("Stopped Video Player");
                         return;
                     }
                     if (EngvideoPaths.Length <= 0)
@@ -123,6 +125,7 @@ public class TableTopicHandler : MonoBehaviour
                         EngvideoPaths = TableTopicVideoPath.GetInstance().GetEngPaths();
                     }
 
+                    Debug.LogError("VideoPlayer Entered eng table");
                     rt.Release();
 
                     //TableBG.gameObject.SetActive(false);
@@ -148,17 +151,19 @@ public class TableTopicHandler : MonoBehaviour
                 if (currentPathPlaying.Contains("Arb"))
                 {
                     Debug.LogWarning($"Already Playing Arabic");
+                    Debug.LogError("Stopped Video Player");
                     return;
                 }
                 //if (currentIndexPlaying == currentSelected)
                 //{
                 //    return;
                 //}
-                //if (EngvideoPaths.Length <= 0)
-                //{
-                //    EngvideoPaths = TableTopicVideoPath.GetInstance().GetEngPaths();
-                //}
+                if (EngvideoPaths.Length <= 0)
+                {
+                    EngvideoPaths = TableTopicVideoPath.GetInstance().GetEngPaths();
+                }
 
+                Debug.LogError("VideoPlayer Entered ar table");
                 rt.Release();
 
                 //TableBG.gameObject.SetActive(false);
@@ -187,8 +192,10 @@ public class TableTopicHandler : MonoBehaviour
         Debug.Log($"Now Table Playing: topic{currentSelected} language: {p_language}");
 
     }
+#if UNITY_EDITOR
     private void OnGUI()
     {
         GUI.TextArea(new Rect(500, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
     }
+#endif
 }
