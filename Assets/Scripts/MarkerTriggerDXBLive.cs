@@ -6,6 +6,7 @@ public class MarkerTriggerDXBLive : PuckTriggerArea
     //[SerializeField] DXBLiveTopicHandler topicHandler;
     //[SerializeField] TableTopicHandler TableTopicHandler;
     [SerializeField] UIVideoHandler mainUIHandler;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,9 @@ public class MarkerTriggerDXBLive : PuckTriggerArea
     protected override void OnPuckEnterBehaviour(Collider2D collision)
     {
         base.OnPuckEnterBehaviour(collision);
+        var intPuck = collision.gameObject.GetComponent<InteractablePuck>();
+        intPuck.SetInBoundary(true);
+        intPuck.isSelectionEnabled = true;
     }
 
     protected override void OnPuckExitBehaviour(Collider2D collision)
@@ -22,6 +26,9 @@ public class MarkerTriggerDXBLive : PuckTriggerArea
         base.OnPuckExitBehaviour(collision);
         var intPuck = collision.gameObject.GetComponent<InteractablePuck>();
         intPuck.isSelectionEnabled = false;
+        intPuck.isInsideBoundary = false;
+
+        mainUIHandler.StopTopics();
 
     }
 

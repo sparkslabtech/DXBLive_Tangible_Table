@@ -37,6 +37,7 @@ public class PuckTriggerArea : MonoBehaviour
     {
         if (collision != null && collision.gameObject.tag.Equals(m_puckTag))
         {
+            OnPuckExitBehaviour(collision);
             //Debug.LogWarning($"Exited {collision.gameObject.name}");
         }
     }

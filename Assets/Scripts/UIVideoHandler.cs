@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,4 +47,10 @@ public class UIVideoHandler : MonoBehaviour
 
     }
 
+    internal void StopTopics()
+    {
+        topicHandler.StopTopic(); //Table
+        TableTopicHandler.StopTopic(); //Table
+
+    }
 }

@@ -239,5 +239,10 @@ public class DXBLiveTopicHandler : MonoBehaviour
     {
         GUI.TextArea(new Rect(0, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
     }
+
+    internal void StopTopic()
+    {
+        OnAllPucksRemoved();
+    }
 #endif
 }

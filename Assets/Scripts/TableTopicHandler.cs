@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using EyeFactiveMarkerManager;
+using System;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -196,6 +197,13 @@ public class TableTopicHandler : MonoBehaviour
     private void OnGUI()
     {
         GUI.TextArea(new Rect(500, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
+    }
+
+    internal void StopTopic()
+    {
+        OnAllPucksRemoved();
+
+        //throw new NotImplementedException();
     }
 #endif
 }

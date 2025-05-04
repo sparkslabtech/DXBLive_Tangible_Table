@@ -91,6 +91,8 @@ public class InteractablePuck : MonoBehaviour
     void ResetValues()
     {
         isInsideBoundary = false;
+        isSelectionEnabled = false;
+
         m_currentTime = 0;
         m_currentSelectedIndex = -1;
         m_selectingIndex = -1;
