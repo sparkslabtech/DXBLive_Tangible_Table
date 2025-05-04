@@ -187,8 +187,8 @@ public class TableTopicHandler : MonoBehaviour
         Debug.Log($"Now Table Playing: topic{currentSelected} language: {p_language}");
 
     }
-    //private void OnGUI()
-    //{
-    //    GUI.TextArea(new Rect(500, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
-    //}
+    private void OnGUI()
+    {
+        GUI.TextArea(new Rect(500, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
+    }
 }

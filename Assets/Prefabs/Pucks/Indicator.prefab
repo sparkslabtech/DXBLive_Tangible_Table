@@ -543,6 +543,8 @@ MonoBehaviour:
   m_visualizerAngle: 47
   m_angle: 0
   nearestIndexDebug: 0
+  isInsideBoundary: 0
+  isSelectionEnabled: 0
 --- !u!61 &5744353493969624712
 BoxCollider2D:
   m_ObjectHideFlags: 0

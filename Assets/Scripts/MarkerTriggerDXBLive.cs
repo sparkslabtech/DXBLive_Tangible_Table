@@ -20,11 +20,18 @@ public class MarkerTriggerDXBLive : PuckTriggerArea
     protected override void OnPuckExitBehaviour(Collider2D collision)
     {
         base.OnPuckExitBehaviour(collision);
+        var intPuck = collision.gameObject.GetComponent<InteractablePuck>();
+        intPuck.isSelectionEnabled = false;
+
     }
 
     protected override void OnPuckStayBehaviour(Collider2D collision)
     {
         base.OnPuckStayBehaviour(collision);
+
+        var intPuck = collision.gameObject.GetComponent<InteractablePuck>();
+        intPuck.SetInBoundary(true);
+        intPuck.isSelectionEnabled = true;
 
         int topicHandlerIndex = MarkerManager.GetMarkerIDToIndex(currentPuckPlaced);
         mainUIHandler.PlayTopic(topicHandlerIndex);

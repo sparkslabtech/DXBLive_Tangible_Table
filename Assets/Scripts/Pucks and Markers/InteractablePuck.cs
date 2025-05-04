@@ -56,7 +56,8 @@ public class InteractablePuck : MonoBehaviour
 
     public Action<int> OnRotationSelect;
 
-
+    public bool isInsideBoundary = false;
+    public bool isSelectionEnabled = false;
     //public float GetCurrentAngle => m_visualizerAngle;
     public float GetCurrentAngle => m_angle;
     public int GetPuckID => puckID;
@@ -89,6 +90,7 @@ public class InteractablePuck : MonoBehaviour
 
     void ResetValues()
     {
+        isInsideBoundary = false;
         m_currentTime = 0;
         m_currentSelectedIndex = -1;
         m_selectingIndex = -1;
@@ -97,9 +99,14 @@ public class InteractablePuck : MonoBehaviour
 
     void FixedUpdate()
     {
-        FindClosestAngle();//FIND ANGLE
-        //MarkerSelect();//SELECTS TOPIC ANGLE
-        SetSelectedRotation();//SELECT ROTATION
+        //    FindClosestAngle();//FIND ANGLE
+        //    //MarkerSelect();//SELECTS TOPIC ANGLE
+        //    SetSelectedRotation();//SELECT ROTATION
+        if (isSelectionEnabled)
+        {
+            FindClosestAngle();//FIND ANGLE
+            SetSelectedRotation();//SELECT ROTATION
+        }
     }
 
     private void OnDisable()
@@ -112,6 +119,11 @@ public class InteractablePuck : MonoBehaviour
     private void OnPuckDetected()
     {
         //initAngle = MarkerManager.Instance.GetCurrentPuckAngle();
+    }
+
+    public void SetInBoundary(bool p_isInside)
+    {
+        isInsideBoundary = p_isInside;
     }
 
     void MarkerSelect()

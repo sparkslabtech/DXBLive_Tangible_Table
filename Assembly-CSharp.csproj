@@ -179,6 +179,7 @@
     <Compile Include="Assets\Scripts\BaseScripts\Tools\DescriptionAttribute.cs" />
     <Compile Include="Assets\Scripts\VideoSwitch.cs" />
     <Compile Include="Assets\Scripts\TopicSelector.cs" />
+    <Compile Include="Assets\PuckBoundaryLifetimes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\StreamingAssets\config.txt" />

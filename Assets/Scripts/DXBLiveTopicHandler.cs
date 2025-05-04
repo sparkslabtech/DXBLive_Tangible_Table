@@ -24,7 +24,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
     public string[] EngvideoPaths;
     public string[] ArbvideoPaths;
     public string currentPathPlaying;
-    public int currentIndexPlaying = 0;
+    [SerializeField] int currentIndexPlaying = 0;
     public bool introPlayed = false;
     int language = 0;
     [Header("Switch Video To Loop")]
@@ -83,6 +83,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
         //MarkerPlacement.SetActive(true);
         //throw new NotImplementedException();
         currentIndexPlaying = -1;
+        currentPathPlaying = "";
 
 
         videoCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() =>
@@ -169,7 +170,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
                     topicPlayer.Play();
 
                     introPlayed = true;
-                    
+
                     videoCanvasGroup.gameObject.SetActive(true);
                     videoCanvasGroup.alpha = 0f;
                     videoCanvasGroup.DOFade(1f, fadeDuration);
@@ -226,10 +227,10 @@ public class DXBLiveTopicHandler : MonoBehaviour
 
     }
 
-    //private void OnGUI()
-    //{
-    //    GUI.TextArea(new Rect(0, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
-    //}
+    private void OnGUI()
+    {
+        GUI.TextArea(new Rect(0, 0, 100, 200), $"current path: {currentPathPlaying} topic : {currentIndexPlaying}");
+    }
 }
 
 
