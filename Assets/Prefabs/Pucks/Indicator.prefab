@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: 5260200072347771730}
   - component: {fileID: 3964185113474127217}
   - component: {fileID: 2016844000362241432}
+  - component: {fileID: 7253943762428423459}
   m_Layer: 0
   m_Name: Indicator
   m_TagString: Puck
@@ -614,6 +615,27 @@ MonoBehaviour:
   arbBtn: {fileID: 6578078745862972826}
   engSpriteActive: {fileID: 21300000, guid: a0b1d8b779f5cfe4186af4a60ef8eedb, type: 3}
   arbSpriteActive: {fileID: 21300000, guid: 48cd5c30ffe34e749b533fbc60787ab5, type: 3}
+--- !u!114 &7253943762428423459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5352925077064761975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925adae56befdbd4da08d2ecd921e23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pucks:
+  - {fileID: 21300000, guid: 5960d2c568c8e5c409b11fe45888b352, type: 3}
+  - {fileID: 21300000, guid: ae301e10e6069aa49b4a83d4ca3e67e5, type: 3}
+  - {fileID: 21300000, guid: 8683b2456975be0438b5de112fa23b55, type: 3}
+  - {fileID: 21300000, guid: a02f89bfbb35206448d3dcfc234789f0, type: 3}
+  - {fileID: 21300000, guid: 073bb283b34a1b349b9b9bef823c68b0, type: 3}
+  - {fileID: 21300000, guid: 64bfbdf9f1d1ab54c9fe37c984f007eb, type: 3}
+  CurrentPuck: {fileID: 1677338735301705446}
+  interactablePuck: {fileID: 203317785}
 --- !u!1 &5711158171342923799
 GameObject:
   m_ObjectHideFlags: 0
