@@ -8,7 +8,6 @@ public class HiglightLanguageBtn : MonoBehaviour
 {
     [SerializeField] InteractablePuck interactablePuck;
     [SerializeField] Image engBtn, arbBtn;
-    [SerializeField] Sprite engSpriteInactive, arbSpriteInactive;
     [SerializeField] Sprite engSpriteActive, arbSpriteActive;
 
     // Start is called before the first frame update
@@ -16,6 +15,7 @@ public class HiglightLanguageBtn : MonoBehaviour
     {
         interactablePuck = GetComponent<InteractablePuck>();
         interactablePuck.OnRotationSelect += OnRotationSelected;
+        arbBtn.gameObject.SetActive(false);
     }
 
     private void OnRotationSelected(int p_indexSelected)
@@ -27,7 +27,8 @@ public class HiglightLanguageBtn : MonoBehaviour
                 //UIVideoHandler.Instance.PlayTopic(p_indexSelected);
                 //UIVideoHandler.Instance.ChangeTopicLanguage(p_indexSelected);
                 engBtn.sprite = engSpriteActive;
-                arbBtn.sprite = arbSpriteInactive;
+                engBtn.gameObject.SetActive(true);  
+                arbBtn.gameObject.SetActive(false);
 
                 //PLAY ENGLISH
                 break;
@@ -35,7 +36,8 @@ public class HiglightLanguageBtn : MonoBehaviour
                 //UIVideoHandler.Instance.ChangeTopicLanguage(p_indexSelected);
                 //PLAY ARABIC
                 arbBtn.sprite = arbSpriteActive;
-                engBtn.sprite = engSpriteInactive;
+                arbBtn.gameObject.SetActive(true);
+                engBtn.gameObject.SetActive(false);
                 break;
             default:
                 break;

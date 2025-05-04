@@ -238,7 +238,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -516,9 +516,9 @@ GameObject:
   m_Component:
   - component: {fileID: 268673627}
   - component: {fileID: 268673629}
+  - component: {fileID: 268673628}
   - component: {fileID: 268673630}
   - component: {fileID: 268673632}
-  - component: {fileID: 268673628}
   - component: {fileID: 268673631}
   - component: {fileID: 268673633}
   m_Layer: 0
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Engpath: Screen\Eng
   m_EngfilePaths:
-  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Screen\Eng\01.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Screen\Eng\01-temp.mp4
   - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Screen\Eng\02.webm
   - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Screen\Eng\03.webm
   - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Screen\Eng\04.webm
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   markerManager: {fileID: 1330063715}
   rt: {fileID: 8400000, guid: 478d3d9bbb7d58849a3731c227498238, type: 2}
-  player: {fileID: 100956149}
+  topicPlayer: {fileID: 100956149}
   BGPlayer: {fileID: 1755019258}
   videoCanvasGroup: {fileID: 100956152}
   fadeDuration: 1
@@ -595,6 +595,8 @@ MonoBehaviour:
   ArbvideoPaths: []
   currentPathPlaying: 
   currentIndexPlaying: 0
+  introPlayed: 0
+  VideoSwitch: {fileID: 268673630}
 --- !u!114 &268673630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,12 +609,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a0605ded4a4224ba0aadd4244983e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentVideoPlayer: {fileID: 0}
-  LoopVideoPlayer: {fileID: 0}
-  LoopingTexture: {fileID: 0}
-  LoopingVideoPaths: []
+  markerManager: {fileID: 1330063715}
+  CurrentVideoPlayer: {fileID: 100956149}
+  LoopVideoPlayer: {fileID: 1403298913}
+  LoopingTexture: {fileID: 8400000, guid: bf88f02996f813341bac1b8949c41d59, type: 2}
+  EngvideoPaths: []
+  ArbvideoPaths: []
   CurrentPathPlaying: 
   CurrentIndexPlaying: 0
+  videoCanvasGroup: {fileID: 1403298914}
+  fadeDuration: 1
 --- !u!114 &268673631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,14 +686,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2034fb1d8669e77459e18aea8043625d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_path: Eng\Loop
-  m_filePaths:
-  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Eng\Loop\01.webm
-  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Eng\Loop\02.webm
-  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Eng\Loop\03.webm
-  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Eng\Loop\04.webm
-  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Eng\Loop\05.webm
-  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Eng\Loop\06.webm
+  m_Engpath: Loop\Eng
+  m_EngfilePaths:
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Eng\01.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Eng\02.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Eng\03.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Eng\04.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Eng\05.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Eng\06.webm
+  m_Arbpath: Loop\Arb
+  m_ArbfilePaths:
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Arb\01.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Arb\02.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Arb\03.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Arb\04.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Arb\05.webm
+  - C:\Users\Sonia\Documents\Unity\GET-2025-Tangible Table\Assets\StreamingAssets\Loop\Arb\06.webm
   m_fileType:
   - .mp4
   - .webm
@@ -1016,8 +1030,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.620136, y: -241.81009}
-  m_SizeDelta: {x: 233.35, y: 233.35}
+  m_AnchoredPosition: {x: 11.43, y: -249.43}
+  m_SizeDelta: {x: 171.34, y: 171.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &892097790
 GameObject:
@@ -1476,6 +1490,127 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336027754}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!1 &1403298909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403298910}
+  - component: {fileID: 1403298913}
+  - component: {fileID: 1403298912}
+  - component: {fileID: 1403298911}
+  - component: {fileID: 1403298914}
+  m_Layer: 5
+  m_Name: Loop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1403298910
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403298909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1982736567}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1403298911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403298909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: bf88f02996f813341bac1b8949c41d59, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1403298912
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403298909}
+  m_CullTransparentMesh: 1
+--- !u!328 &1403298913
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403298909}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: bf88f02996f813341bac1b8949c41d59, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 1
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!225 &1403298914
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403298909}
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
@@ -2300,6 +2435,7 @@ RectTransform:
   - {fileID: 144545614}
   - {fileID: 1755019257}
   - {fileID: 100956148}
+  - {fileID: 1403298910}
   m_Father: {fileID: 1467842656}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2340,7 +2476,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 2000, y: 1200}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

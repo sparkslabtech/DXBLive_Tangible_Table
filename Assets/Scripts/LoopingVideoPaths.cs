@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 public class LoopingVideoPaths : MonoBehaviour
+
 {
     private static LoopingVideoPaths _instance;
     public static LoopingVideoPaths GetInstance() => _instance;
 
-    [SerializeField] public string m_path = "Screen";
-    [SerializeField] string[] m_filePaths;
+    [SerializeField] public string m_Engpath = "Table";
+    [SerializeField] string[] m_EngfilePaths;
+    [Space]
+    [SerializeField] public string m_Arbpath = "Table";
+    [SerializeField] string[] m_ArbfilePaths;
     [SerializeField] string[] m_fileType = { ".mp4" };
     const string m_folderNameConfig = "VIDEO_FOLDER";
     private void Awake()
@@ -34,18 +37,20 @@ public class LoopingVideoPaths : MonoBehaviour
     private void CheckFiles()
     {
         Debug.Log($"Video Paths FInding Started");
-        m_path = ConfigManager.Instance.GetStringValue(m_folderNameConfig);
+        m_Engpath = ConfigManager.Instance.GetStringValue(m_folderNameConfig);
+        m_Arbpath = ConfigManager.Instance.GetStringValue(m_folderNameConfig);
         DontDestroyOnLoad(this);
         FindFiles();
     }
 
-    public string[] GetPaths() => m_filePaths;
+    public string[] GetEngPaths() => m_EngfilePaths;
+    public string[] GetArbPaths() => m_ArbfilePaths;
 
     public string[] FindImageFiles(string p_folderPath)
     {
         Debug.Log($"Path to Find Images: " + p_folderPath);
         Debug.Log(Directory.Exists(Application.streamingAssetsPath));
-        Debug.Assert(Directory.Exists(p_folderPath));
+        //Debug.Assert(Directory.Exists(p_folderPath));
 
         var di = new DirectoryInfo(p_folderPath);
         var list = new List<string>();
@@ -56,7 +61,7 @@ public class LoopingVideoPaths : MonoBehaviour
             foreach (var file in di.GetFiles($"*{fileType}", SearchOption.AllDirectories))
             {
                 list.Add(file.ToString());
-                Debug.Log($"{file}");
+                //Debug.Log($"{file}");
             }
         }
 
@@ -66,7 +71,7 @@ public class LoopingVideoPaths : MonoBehaviour
     [ContextMenu("Find Files")]
     public void FindFiles()
     {
-        m_filePaths = FindImageFiles($"{Application.streamingAssetsPath}/{m_path}/");
+        m_EngfilePaths = FindImageFiles($"{Application.streamingAssetsPath}/{m_Engpath}/");
+        m_ArbfilePaths = FindImageFiles($"{Application.streamingAssetsPath}/{m_Arbpath}/");
     }
-
 }

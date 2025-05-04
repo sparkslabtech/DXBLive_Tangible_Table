@@ -26,7 +26,6 @@ public class UIVideoHandler : MonoBehaviour
         topicHandler.PlayTopic(p_index); //:LED
         TableTopicHandler.PlayTopic(p_index); //Table
         currentSelected = p_index;
-
     }
 
     public void PlayArabicTopic()

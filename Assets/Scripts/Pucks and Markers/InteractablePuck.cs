@@ -83,7 +83,7 @@ public class InteractablePuck : MonoBehaviour
 #else
         showAngleVisualizer = false;
 #endif
-
+        rotationSensitivity = ConfigManager.Instance.GetFloatValue("PUCK_ROTATION_SENSITITIVITY");
         ResetValues();
     }
 
@@ -161,7 +161,7 @@ public class InteractablePuck : MonoBehaviour
             //m_visualizerAngle = 360 - (initAngle - MarkerManager.Instance.GetCurrentPuckAngle()) - 90;
             m_visualizerAngle = (initAngle - MarkerManager.Instance.GetCurrentPuckAngle()) - SetDefaultLanguage;
             //Debug.LogWarning($"Calculated Angle ({m_visualizerAngle}*{rotationSensitivity}) = {m_visualizerAngle * rotationSensitivity}");
-            //m_visualizerAngle = m_visualizerAngle * rotationSensitivity;
+            m_visualizerAngle = m_visualizerAngle * rotationSensitivity;
             angleVisualizer.transform.rotation = Quaternion.Euler(0, 0, m_visualizerAngle);
         }
     }

@@ -3,6 +3,7 @@ using DG.Tweening.Plugins;
 using EyeFactiveMarkerManager;
 using JetBrains.Annotations;
 using System;
+using System.Net;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
 {
     public MarkerManager markerManager;
     public RenderTexture rt;
-    public VideoPlayer player;
+    public VideoPlayer topicPlayer;
     [Space]
     public VideoPlayer BGPlayer;
     [Space]
@@ -24,17 +25,40 @@ public class DXBLiveTopicHandler : MonoBehaviour
     public string[] ArbvideoPaths;
     public string currentPathPlaying;
     public int currentIndexPlaying = 0;
+    public bool introPlayed = false;
+    int language = 0;
+    [Header("Switch Video To Loop")]
+    public VideoSwitch VideoSwitch;
 
     void Start()
     {
+        //topicPlayer.isLooping = false;
         currentIndexPlaying = -1;
         rt.Release();
-
+        introPlayed = false;
         EngvideoPaths = VideoPathLoader.GetInstance().GetEngPaths();
         ArbvideoPaths = VideoPathLoader.GetInstance().GetArbPaths();
+
         BGPlayer.gameObject.SetActive(true);
 
+        topicPlayer.loopPointReached += TopicPlayer_loopPointReached;
         markerManager.OnNoPucksDetected += OnAllPucksRemoved;
+    }
+
+    private void TopicPlayer_loopPointReached(VideoPlayer source)
+    {
+        Debug.Log($"Source: {source}");
+        if (introPlayed)
+        {
+            Debug.Log($"Switching the loop video");
+            VideoSwitch.SwitchVideoOnEnd(currentIndexPlaying, language);
+        }
+        else
+        {
+            //continue playing loop
+            Debug.Log($"continuing the loop video");
+
+        }
     }
 
     private void FixedUpdate()
@@ -42,8 +66,8 @@ public class DXBLiveTopicHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rt.Release();
-            player.Stop();
-            player.gameObject.SetActive(false);
+            topicPlayer.Stop();
+            topicPlayer.gameObject.SetActive(false);
             BGPlayer.gameObject.SetActive(false);
             currentIndexPlaying = -1;
         }
@@ -52,7 +76,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
     private void OnAllPucksRemoved()
     {
         rt.Release();
-        player.Stop();
+        topicPlayer.Stop();
         //player.gameObject.SetActive(false);
         BGPlayer.gameObject.SetActive(true);
         //Logo.SetActive(true);
@@ -89,7 +113,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
         rt.Release();
 
         BGPlayer.gameObject.SetActive(false);
-        player.gameObject.SetActive(true);
+        topicPlayer.gameObject.SetActive(true);
         //Logo.SetActive(false);
         //MarkerPlacement.SetActive(false);
 
@@ -97,9 +121,9 @@ public class DXBLiveTopicHandler : MonoBehaviour
         currentIndexPlaying = p_index;
         currentPathPlaying = EngvideoPaths[p_index];
 
-        player.Stop();
-        player.url = currentPathPlaying;
-        player.Play();
+        topicPlayer.Stop();
+        topicPlayer.url = currentPathPlaying;
+        topicPlayer.Play();
 
 
         videoCanvasGroup.gameObject.SetActive(true);
@@ -109,6 +133,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
 
     internal void PlayTopic(int currentSelected, int p_language)
     {
+        language = p_language;
         Debug.Log($"Language: {p_language}");
         switch (p_language)
         {
@@ -131,7 +156,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
                     rt.Release();
 
                     BGPlayer.gameObject.SetActive(false);
-                    player.gameObject.SetActive(true);
+                    topicPlayer.gameObject.SetActive(true);
                     //Logo.SetActive(false);
                     //MarkerPlacement.SetActive(false);
 
@@ -139,11 +164,12 @@ public class DXBLiveTopicHandler : MonoBehaviour
                     currentIndexPlaying = currentSelected;
                     currentPathPlaying = EngvideoPaths[currentSelected];
 
-                    player.Stop();
-                    player.url = currentPathPlaying;
-                    player.Play();
+                    topicPlayer.Stop();
+                    topicPlayer.url = currentPathPlaying;
+                    topicPlayer.Play();
 
-
+                    introPlayed = true;
+                    
                     videoCanvasGroup.gameObject.SetActive(true);
                     videoCanvasGroup.alpha = 0f;
                     videoCanvasGroup.DOFade(1f, fadeDuration);
@@ -167,7 +193,7 @@ public class DXBLiveTopicHandler : MonoBehaviour
                 rt.Release();
 
                 BGPlayer.gameObject.SetActive(false);
-                player.gameObject.SetActive(true);
+                topicPlayer.gameObject.SetActive(true);
                 //Logo.SetActive(false);
                 //MarkerPlacement.SetActive(false);
 
@@ -175,9 +201,16 @@ public class DXBLiveTopicHandler : MonoBehaviour
                 currentIndexPlaying = currentSelected;
                 currentPathPlaying = ArbvideoPaths[currentSelected];
 
-                player.Stop();
-                player.url = currentPathPlaying;
-                player.Play();
+                topicPlayer.Stop();
+                topicPlayer.url = currentPathPlaying;
+                topicPlayer.Play();
+
+                //introPlayed = false;
+                introPlayed = true;
+                //if (!player.isPlaying)
+                //{
+                //    VideoSwitch.SwitchVideoOnEnd(currentSelected, p_language);
+                //}
 
 
                 videoCanvasGroup.gameObject.SetActive(true);
